@@ -1,0 +1,436 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 15px;
+}
+
+.app-container {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+    padding: 30px 25px;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 24px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.top-bar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.app-title {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #1e293b;
+}
+
+.dict-btn {
+    background: #e2e8f0;
+    color: #1e293b;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.dict-btn:hover {
+    background: #3b82f6;
+    color: #ffffff;
+}
+
+.card {
+    width: 100%;
+    min-height: 220px;
+    padding: 25px 20px 45px 20px;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    border: 3px solid transparent;
+    text-align: center;
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+}
+
+.card:active {
+    transform: scale(0.97);
+}
+
+#current-word {
+    font-size: 2.1rem;
+    font-weight: 700;
+    color: #1e293b;
+    line-height: 1.3;
+}
+
+.card-hint {
+    position: absolute;
+    bottom: 16px;
+    color: #94a3b8;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.card-correct {
+    border-color: #10b981;
+    background-color: #ecfdf5;
+}
+
+.card-wrong {
+    border-color: #ef4444;
+    background-color: #fef2f2;
+}
+
+.step-navigation {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #475569;
+}
+
+.nav-btn {
+    background: #ffffff;
+    border: none;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    font-size: 1.4rem;
+    cursor: pointer;
+    color: #64748b;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.2s ease;
+}
+
+.nav-btn:hover {
+    background: #3b82f6;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(59, 130, 246, 0.3);
+}
+
+.input-wrapper {
+    width: 100%;
+    text-align: center;
+}
+
+#translation-input {
+    width: 100%;
+    padding: 16px 20px;
+    font-size: 1.15rem;
+    color: #334155;
+    background: #ffffff;
+    border: 2px solid #cbd5e1;
+    border-radius: 14px;
+    outline: none;
+    transition: all 0.2s ease;
+}
+
+#translation-input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+}
+
+#translation-input:disabled {
+    background-color: #f1f5f9;
+    color: #64748b;
+    border-color: #e2e8f0;
+}
+
+.error-message {
+    color: #ef4444;
+    font-size: 0.95rem;
+    margin-top: 10px;
+    min-height: 22px;
+    font-weight: 600;
+}
+
+.stats-section {
+    width: 100%;
+    background: #ffffff;
+    padding: 20px 24px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+.stats-title {
+    color: #1e293b;
+    font-size: 1.05rem;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 800;
+    text-align: center;
+}
+
+.stats-counters {
+    display: flex;
+    justify-content: space-around;
+    gap: 16px;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.stat-item strong {
+    font-size: 1.5rem;
+    margin-top: 4px;
+}
+
+.stat-item.correct {
+    color: #10b981;
+}
+
+.stat-item.wrong {
+    color: #ef4444;
+}
+
+/* Модальні вікна */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(6px);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 15px;
+}
+
+.modal-content {
+    background: #ffffff;
+    padding: 32px 26px;
+    border-radius: 24px;
+    text-align: center;
+    width: 100%;
+    max-width: 480px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-content h2 {
+    color: #1e293b;
+    font-weight: 800;
+    font-size: 1.7rem;
+    margin-bottom: 8px;
+}
+
+.modal-score {
+    font-size: 1.2rem;
+    color: #475569;
+    font-weight: 600;
+}
+
+.modal-level {
+    font-size: 1.35rem;
+    font-weight: 800;
+    margin: 8px 0 18px 0;
+}
+
+/* Список помилок у модальному вікні */
+.mistakes-wrapper {
+    text-align: left;
+    margin-bottom: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.mistakes-title {
+    font-size: 1rem;
+    color: #1e293b;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.mistakes-list {
+    max-height: 240px;
+    overflow-y: auto;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 10px;
+    background: #f8fafc;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.mistake-item {
+    background: #ffffff;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border-left: 4px solid #ef4444;
+    font-size: 0.92rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+}
+
+.mistake-ua {
+    font-weight: 700;
+    color: #1e293b;
+    display: block;
+    margin-bottom: 3px;
+}
+
+.mistake-user {
+    color: #ef4444;
+    text-decoration: line-through;
+    margin-right: 8px;
+}
+
+.mistake-correct {
+    color: #10b981;
+    font-weight: 700;
+}
+
+.no-mistakes {
+    color: #10b981;
+    font-weight: 700;
+    text-align: center;
+    padding: 15px;
+    background: #ecfdf5;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+.restart-btn {
+    padding: 15px 24px;
+    background: #3b82f6;
+    color: #ffffff;
+    border: none;
+    border-radius: 14px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 100%;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+.restart-btn:hover {
+    background: #2563eb;
+    transform: translateY(-2px);
+}
+
+/* Стилі для модального вікна Словника */
+.dict-modal-content {
+    max-width: 540px;
+}
+
+.dict-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.close-modal-btn {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    line-height: 1;
+    color: #64748b;
+    cursor: pointer;
+}
+
+.close-modal-btn:hover {
+    color: #ef4444;
+}
+
+.dict-search-input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #cbd5e1;
+    border-radius: 12px;
+    font-size: 1rem;
+    margin-bottom: 14px;
+    outline: none;
+}
+
+.dict-search-input:focus {
+    border-color: #3b82f6;
+}
+
+.dictionary-list {
+    overflow-y: auto;
+    max-height: 360px;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    text-align: left;
+}
+
+.dict-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 14px;
+    border-bottom: 1px solid #f1f5f9;
+    font-size: 0.95rem;
+    gap: 12px;
+}
+
+.dict-row:nth-child(even) {
+    background-color: #f8fafc;
+}
+
+.dict-en {
+    font-weight: 700;
+    color: #2563eb;
+    white-space: nowrap;
+}
+
+.dict-ua {
+    color: #334155;
+    text-align: right;
+}
+
+@media (max-width: 480px) {
+    .app-container {
+        padding: 22px 18px;
+    }
+    .card {
+        min-height: 180px;
+    }
+    #current-word {
+        font-size: 1.6rem;
+    }
+}

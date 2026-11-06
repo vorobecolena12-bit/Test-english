@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Language Learning — English Vocabulary</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Підключення jQuery (CDN + локальний файл із лабораторної) -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="jquery-4.0.0.min.js"></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="app-container">
+        <div class="top-bar">
+            <h1 class="app-title">English Vocabulary Test</h1>
+            <button id="open-dict-btn" class="dict-btn">📖 Словник (<span id="total-dict-count">0</span>)</button>
+        </div>
+
+        <div id="word-card" class="card">
+            <span id="current-word">Слово</span>
+            <small class="card-hint">Натисніть на картку або Enter для перевірки</small>
+        </div>
+
+        <div class="step-navigation">
+            <button id="prev-btn" class="nav-btn">&larr;</button>
+            <span id="step-counter" class="step-counter">1/15</span>
+            <button id="next-btn" class="nav-btn">&rarr;</button>
+        </div>
+
+        <div class="input-wrapper">
+            <input 
+                type="text" 
+                id="translation-input" 
+                placeholder="Введіть переклад англійською..." 
+                autocomplete="off">
+            <div id="validation-error" class="error-message"></div>
+        </div>
+
+        <div class="stats-section">
+            <h3 class="stats-title">Статистика</h3>
+            <div class="stats-counters">
+                <div class="stat-item correct">
+                    <span>Вірно</span>
+                    <strong id="correct-count">0</strong>
+                </div>
+                <div class="stat-item wrong">
+                    <span>Невірно</span>
+                    <strong id="wrong-count">0</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальне вікно результатів тесту -->
+    <div id="result-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h2>Ваш результат</h2>
+            <p id="modal-score" class="modal-score"></p>
+            <p id="modal-level" class="modal-level"></p>
+
+            <div id="mistakes-wrapper" class="mistakes-wrapper">
+                <h4 class="mistakes-title">Робота над помилками:</h4>
+                <div id="mistakes-list" class="mistakes-list"></div>
+            </div>
+
+            <button id="restart-btn" class="restart-btn">Спробувати знову (нові 15 слів)</button>
+        </div>
+    </div>
+
+    <!-- Модальне вікно повного словника -->
+    <div id="dictionary-modal" class="modal-overlay">
+        <div class="modal-content dict-modal-content">
+            <div class="dict-modal-header">
+                <h2>Повний словник теми</h2>
+                <button id="close-dict-btn" class="close-modal-btn">&times;</button>
+            </div>
+            <input type="text" id="dict-search" class="dict-search-input" placeholder="Пошук слова (укр або англ)...">
+            <div id="dictionary-list" class="dictionary-list"></div>
+        </div>
+    </div>
+</body>
+</html>

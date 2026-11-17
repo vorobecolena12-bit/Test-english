@@ -1,66 +1,55 @@
 $(document).ready(function () {
-    // Повний словник усіх слів, словоформ та ідіом зі скріншотів підручника ("Not All Hackers Are the Same")
+    // Оновлений словник зі скріншотів тексту "Weird Inventions"
     const fullDictionary = [
-        // Основна лексика з тексту та Vocabulary Preview
-        { ua: "змінювати (інформацію, дані)", en: "alter" },
-        { ua: "приватний / особистий (не публічний)", en: "private" },
-        { ua: "взаємодіяти / спілкуватися", en: "interact" },
-        { ua: "дійсний / правильний (пароль, ліцензія)", en: "valid" },
-        { ua: "ділитися / використовувати спільно", en: "share" },
-        { ua: "загроза / небезпека", en: "threat" },
-        { ua: "несанкціонований (доступ)", en: "unauthorized" },
-        { ua: "мережа (комп'ютерна)", en: "network" },
-        { ua: "протокол (передачі даних)", en: "protocol" },
-        { ua: "маніпулювати / керувати", en: "manipulate" },
-        { ua: "пасивний", en: "passive" },
-        { ua: "активний", en: "active" },
-        { ua: "код", en: "code" },
-        { ua: "пароль", en: "password" },
-        { ua: "безпека / захист", en: "security" },
-        { ua: "хакерство / комп'ютерний злом", en: "hacking" },
-        { ua: "доступ", en: "access" },
-
-        // Словоформи із вправи B (Vocabulary Review) та Summary
-        { ua: "незаконний (прикметник)", en: "illegal" },
-        { ua: "незаконно (прислівник)", en: "illegally" },
-        { ua: "легалізувати / узаконити", en: "legalize" },
-        { ua: "зміна / переробка (іменник, напр. одягу)", en: "alteration" },
-        { ua: "пасивно (прислівник)", en: "passively" },
-        { ua: "пасивність (іменник)", en: "passivity" },
-
-        // Ідіоми (Idiomatic Expressions)
-        { ua: "свого роду / певною мірою (ідіома)", en: "sort of" },
-        { ua: "відчувати приплив адреналіну / кайф (ідіома)", en: "get a rush" },
-        { ua: "безумовно / з великим відривом (ідіома)", en: "by far" },
-
-        // Додаткові слова з тексту та тестів (Reading & Vocabulary Review)
-        { ua: "видаляти", en: "delete" },
+        { ua: "суперечити / заперечувати", en: "contradict" },
+        { ua: "фізика", en: "physics" },
+        { ua: "зрошення / іригація", en: "irrigation" },
+        { ua: "хвиля", en: "wave" },
+        { ua: "химерний / дуже дивний", en: "bizarre" },
+        { ua: "розробляти / проектувати", en: "design" },
+        { ua: "вихід на пенсію / пенсія", en: "retirement" },
+        { ua: "трубка / труба", en: "tube" },
+        { ua: "клапан / відкидна стулка", en: "flap" },
+        { ua: "випадково", en: "accidentally" },
+        { ua: "зручний / корисний", en: "handy" },
+        { ua: "запускати (напр. сигналізацію)", en: "set off" },
+        { ua: "дивний / несподіваний (ідіома)", en: "out in left field" },
+        { ua: "бути в хорошій компанії (ідіома)", en: "be in good company" },
+        { ua: "винахід", en: "invention" },
+        { ua: "винахідник", en: "inventor" },
+        { ua: "винаходити", en: "invent" },
+        { ua: "нереалістичний", en: "unrealistic" },
+        { ua: "відстань", en: "distance" },
+        { ua: "танути / плавитися", en: "melt" },
+        { ua: "пустеля", en: "desert" },
+        { ua: "напрямок", en: "direction" },
+        { ua: "запобігати", en: "prevent" },
+        { ua: "крадіжка", en: "theft" },
         { ua: "красти", en: "steal" },
-        { ua: "поширювати (віруси)", en: "spread" },
-        { ua: "пошкоджувати / завдавати шкоди", en: "damage" },
-        { ua: "знищувати / руйнувати", en: "destroy" },
-        { ua: "програмне забезпечення", en: "software" },
-        { ua: "визначати / встановлювати", en: "determine" },
-        { ua: "необмежений", en: "unlimited" },
-        { ua: "зазвичай / загалом (прислівник)", en: "commonly" },
-        { ua: "складний / що кидає виклик", en: "challenging" },
-        { ua: "військовий", en: "military" },
-        { ua: "випускати (вірус)", en: "release" },
-        { ua: "небезпечний", en: "dangerous" },
-        { ua: "захищати", en: "protect" },
-        { ua: "незвичайний", en: "unusual" },
-        { ua: "вгадувати", en: "guess" },
-        { ua: "пристрій", en: "device" },
-        { ua: "завантажувати (з інтернету)", en: "download" },
-        { ua: "вважатися (напр. великим вченим)", en: "considered" },
-        { ua: "відкладений / із затримкою (ефект вірусу)", en: "delayed" },
-        { ua: "шкідливий", en: "harmful" },
-        { ua: "обліковий запис / акаунт", en: "account" },
-        { ua: "інакше / в іншому випадку", en: "otherwise" },
-        { ua: "додатковий", en: "additional" }
+        { ua: "полум'я", en: "flame" },
+        { ua: "травмований / поранений", en: "injured" },
+        { ua: "безлад", en: "mess" },
+        { ua: "спраглий", en: "thirsty" },
+        { ua: "серйозний", en: "serious" },
+        { ua: "з'єднувати", en: "connect" },
+        { ua: "визначати", en: "determine" },
+        { ua: "експеримент", en: "experiment" },
+        { ua: "дослідник", en: "researcher" },
+        { ua: "клімат", en: "climate" },
+        { ua: "зрошувати", en: "irrigate" },
+        { ua: "дизайнер", en: "designer" },
+        { ua: "суперечність", en: "contradiction" },
+        { ua: "суперечливий", en: "contradictory" },
+        { ua: "дивовижно", en: "surprisingly" },
+        { ua: "традиційно", en: "traditionally" },
+        { ua: "з'єднання", en: "connection" },
+        { ua: "реальність", en: "reality" },
+        { ua: "медицина / ліки", en: "medicine" },
+        { ua: "базовий / основний", en: "basic" },
+        { ua: "прикріплений", en: "attached" }
     ];
 
-    const TEST_SIZE = 15; // Кількість слів в одному тесті
+    const TEST_SIZE = 15;
     let testWords = [];
     let currentIndex = 0;
     let correctCount = 0;
@@ -68,10 +57,8 @@ $(document).ready(function () {
     let cardStates = [];
     let userAnswers = [];
 
-    // Відображення загальної кількості слів у кнопці словника
     $("#total-dict-count").text(fullDictionary.length);
 
-    // Алгоритм Фішера-Єйтса для якісного рандомного перемішування
     function shuffleArray(array) {
         let arr = [...array];
         for (let i = arr.length - 1; i > 0; i--) {
@@ -87,14 +74,11 @@ $(document).ready(function () {
         wrongCount = 0;
         cardStates = new Array(TEST_SIZE).fill(null);
         userAnswers = new Array(TEST_SIZE).fill("");
-
-        // Перемішуємо весь словник і беремо перші 15 випадкових слів
         testWords = shuffleArray(fullDictionary).slice(0, TEST_SIZE);
 
         $("#correct-count").text(correctCount);
         $("#wrong-count").text(wrongCount);
         $("#result-modal").fadeOut(200);
-
         showWord();
     }
 
@@ -118,12 +102,10 @@ $(document).ready(function () {
         }
     }
 
-    // Перевірка слова при кліку на картку
     $("#word-card").click(function () {
         if (cardStates[currentIndex] !== null) return;
 
         let answer = $("#translation-input").val().trim().toLowerCase().replace(/\s+/g, " ");
-
         if (answer === "") {
             $("#validation-error").text("Введіть переклад англійською!");
             return;
@@ -164,14 +146,12 @@ $(document).ready(function () {
         }, 900);
     });
 
-    // Перевірка по натисканню Enter
     $("#translation-input").on("keydown", function (e) {
         if (e.key === "Enter") {
             $("#word-card").click();
         }
     });
 
-    // Навігація вперед/назад
     $("#next-btn").click(function () {
         if (currentIndex < TEST_SIZE - 1) {
             currentIndex++;
@@ -186,7 +166,6 @@ $(document).ready(function () {
         }
     });
 
-    // Виведення модального вікна з результатами та списком помилок
     function showResults() {
         let percentage = Math.round((correctCount / TEST_SIZE) * 100);
         $("#modal-score").text(`Вірно: ${correctCount} з ${TEST_SIZE} (${percentage}%)`);
@@ -201,7 +180,6 @@ $(document).ready(function () {
             $("#modal-level").text("Рівень: Beginner (Варто повторити слова)").css("color", "#ef4444");
         }
 
-        // Формування списку неправильних відповідей
         const $mistakesList = $("#mistakes-list");
         const $mistakesWrapper = $("#mistakes-wrapper");
         $mistakesList.empty();
@@ -233,13 +211,11 @@ $(document).ready(function () {
         $("#result-modal").css("display", "flex").hide().fadeIn(300);
     }
 
-    // Рендер повного словника у модальному вікні
     function renderDictionary(filterText = "") {
         const $list = $("#dictionary-list");
         $list.empty();
         const query = filterText.trim().toLowerCase();
 
-        // Сортуємо за англійським алфавітом для зручного перегляду
         const sortedDict = [...fullDictionary].sort((a, b) => a.en.localeCompare(b.en));
 
         sortedDict.forEach(item => {
@@ -254,7 +230,6 @@ $(document).ready(function () {
         });
     }
 
-    // Відкриття та закриття модального вікна словника
     $("#open-dict-btn").click(function () {
         $("#dict-search").val("");
         renderDictionary();
@@ -270,6 +245,5 @@ $(document).ready(function () {
     });
 
     $("#restart-btn").click(startGame);
-
     startGame();
 });
